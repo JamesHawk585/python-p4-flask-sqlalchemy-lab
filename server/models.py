@@ -17,12 +17,17 @@ class Animal(db.Model):
     enclosure = db.relationship('enclosures', backref='animals')
 
     def __repr__(self):
-        return f'<Animal {self.name}>'
+        return f'<Animal is {self.name}>'
 
 class Zookeeper(db.Model):
     __tablename__ = 'zookeepers'
-
     id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String, unique=True)
+    birthday = db.Columns(db.String)
+    animals = db.relationship('animals', backref='zookeepers')
+
+    def __repr__(self):
+        return f'<Zookeeper is {self.name}>'
 
 class Enclosure(db.Model):
     __tablename__ = 'enclosures'
