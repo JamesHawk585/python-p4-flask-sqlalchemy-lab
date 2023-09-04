@@ -31,6 +31,12 @@ class Zookeeper(db.Model):
 
 class Enclosure(db.Model):
     __tablename__ = 'enclosures'
-
     id = db.Column(db.Integer, primary_key=True)
+    environment = db.Column(db.String)
+    open_to_visitors = db.Column(db.Boolean)
+    animals = db.relationship('animals', backref='enclosures')
+
+    def __repr__(self):
+        return f'<Enclosure is {self.environment}>'
+
 
