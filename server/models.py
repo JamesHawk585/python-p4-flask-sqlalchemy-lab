@@ -8,6 +8,11 @@ metadata = MetaData(naming_convention={
 
 db = SQLAlchemy(metadata=metadata)
 
+class Animal(db.Model):
+    __tablename__ = 'animals'
+
+    id = db.Column(db.Integer, primary_key=True)
+
 class Zookeeper(db.Model):
     __tablename__ = 'zookeepers'
 
@@ -18,7 +23,3 @@ class Enclosure(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
 
-class Animal(db.Model):
-    __tablename__ = 'animals'
-
-    id = db.Column(db.Integer, primary_key=True)
