@@ -10,8 +10,14 @@ db = SQLAlchemy(metadata=metadata)
 
 class Animal(db.Model):
     __tablename__ = 'animals'
-
     id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String, unique=True)
+    species = db.Column(db.String)
+    zookeeper = db.relationship('zookeepers', backref='animals')
+    enclosure = db.relationship('enclosures', backref='animals')
+
+    def __repr__(self):
+        return f'<Animal {self.name}>'
 
 class Zookeeper(db.Model):
     __tablename__ = 'zookeepers'
