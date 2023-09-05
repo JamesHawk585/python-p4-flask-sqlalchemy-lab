@@ -53,11 +53,12 @@ def zookeeper_by_id(id):
 @app.route('/enclosure/<int:id>')
 def enclosure_by_id(id):
     enclosure = Enclosure.query.filter(Enclosure.id == id).first()
+    animals = ', '.join(animal.name for animal in enclosure.animals)
     response_body = f'''
     <ul>ID:{enclosure.id}</ul>
     <ul>Environment:{enclosure.environment}</ul>
     <ul>Open to Visitors:{enclosure.open_to_visitors}</ul>
-    <ul>Animals:{enclosure.animals}</ul>
+    <ul>Animals:{animals}</ul>
     '''
     # Consider a generator exppression for all one to many relationships. 
 
