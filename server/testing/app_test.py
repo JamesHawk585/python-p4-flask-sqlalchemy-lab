@@ -1,7 +1,7 @@
 from os import environ
 import re
 
-from app import app, db
+from app import app
 from server.models import Animal, Enclosure, Zookeeper
 
 class TestApp:
