@@ -36,13 +36,16 @@ def animal_by_id(id):
 @app.route('/zookeeper/<int:id>')
 def zookeeper_by_id(id):
     zookeeper =  Zookeeper.query.filter(Zookeeper.id == id).first()
+    animals = ', '.join(animal.name for animal in zookeeper.animals)
     response_body = f'''
     <ul>ID:{zookeeper.id}</ul>
     <ul>Name:{zookeeper.name}</ul>
     <ul>Birthday:{zookeeper.birthday}</ul>
-    <ul>Animals:{zookeeper.animals}</ul>
+    <ul>Animals:{animals}</ul>
     '''
-
+# Consider a generator expression for zookeeper.animals.
+# Syntax: (expression for item in iterable)
+# Sudo code: \n return animal for animal in zookeepers
     response = make_response(response_body, 200)
     return response 
 
@@ -56,6 +59,7 @@ def enclosure_by_id(id):
     <ul>Open to Visitors:{enclosure.open_to_visitors}</ul>
     <ul>Animals:{enclosure.animals}</ul>
     '''
+    # Consider a generator exppression for all one to many relationships. 
 
     response = make_response(response_body, 200)
     return response 
